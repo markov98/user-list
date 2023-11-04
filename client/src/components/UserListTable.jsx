@@ -11,6 +11,8 @@ export default function UserListTable() {
 
     }, []);
 
+    console.log(users);
+
     return (
         <div className="table-wrapper">
             <table className="table">
@@ -69,11 +71,11 @@ export default function UserListTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    <UserListItem />
+                    {users.map(user => (
+                        <UserListItem key={user._id} {...user} />
+                    ))}
                 </tbody>
             </table>
         </div>
     )
-
-
 }
