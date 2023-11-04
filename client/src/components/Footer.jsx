@@ -1,7 +1,7 @@
 export default function Footer() {
     return (
-        <footer className="footer">
-            <p>Copyright © designed by Mihail Valkov</p>
-        </footer>
+        <footer class="footer">
+        <p>This site is designed to be used for training purposes at SoftUni.</p>
+      </footer>
     )
 }
