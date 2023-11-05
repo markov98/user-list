@@ -6,6 +6,7 @@ import CreateUserModal from './CreateUserModal';
 export default function UserListTable() {
     const [users, setUsers] = useState([]);
     const [showCreate, setShowCreate] = useState(null);
+    const [showInfo, setShowInfo] = useState(null);
 
     useEffect(() => {
         userService.getAll()
@@ -26,9 +27,9 @@ export default function UserListTable() {
         e.preventDefault();
 
         const data = Object.fromEntries(new FormData(e.target));
-        const result = await userService.create(data);
+        const user = await userService.create(data);
 
-        setUsers([...users, result])
+        setUsers([...users, user])
 
         setShowCreate(null);
     }
