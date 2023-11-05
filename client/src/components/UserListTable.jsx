@@ -11,8 +11,6 @@ export default function UserListTable() {
 
     }, []);
 
-    console.log(users);
-
     return (
         <div className="table-wrapper">
             <table className="table">
