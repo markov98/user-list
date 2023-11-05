@@ -7,7 +7,8 @@ export default function UserListTable() {
 
     useEffect(() => {
         userService.getAll()
-            .then(result => setUsers(result));
+            .then(result => setUsers(result))
+            .catch(err => console.log(err));
 
     }, []);
 
