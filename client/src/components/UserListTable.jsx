@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import * as userService from '../services/userService';
 import UserListItem from './userListItem';
 import CreateUserModal from './CreateUserModal';
+import UserInfoModal from './userInfoModal';
 
 export default function UserListTable() {
     const [users, setUsers] = useState([]);
@@ -14,6 +15,8 @@ export default function UserListTable() {
             .catch(err => console.log(err));
 
     }, []);
+
+    // For creating users
 
     const showUserCreateModal = () => {
         setShowCreate(<CreateUserModal hideCreate={hideCreateModal} userCreate={userCreate} />);
@@ -32,6 +35,16 @@ export default function UserListTable() {
         setUsers([...users, user])
 
         setShowCreate(null);
+    }
+
+    // For users info
+
+    const showInfoModal = (id) => {
+        setShowInfo(<UserInfoModal id={id} />)
+    }
+
+    const hideInfoModal = () => {
+        setShowInfo(null);
     }
 
     return (
@@ -94,13 +107,14 @@ export default function UserListTable() {
                     </thead>
                     <tbody>
                         {users.map(user => (
-                            <UserListItem key={user._id} {...user} />
+                            <UserListItem key={user._id} showInfo={showInfoModal} {...user} />
                         ))}
                     </tbody>
                 </table>
             </div>
             <button className="btn-add btn" onClick={showUserCreateModal}>Add new user</button>
             {showCreate}
+            {showInfo}
         </>
     )
 }
