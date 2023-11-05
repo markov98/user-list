@@ -40,7 +40,7 @@ export default function UserListTable() {
     // For users info
 
     const showInfoModal = (id) => {
-        setShowInfo(<UserInfoModal id={id} />)
+        setShowInfo(<UserInfoModal id={id} hideInfo={hideInfoModal} />)
     }
 
     const hideInfoModal = () => {
