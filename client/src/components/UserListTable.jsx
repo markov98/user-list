@@ -3,11 +3,13 @@ import * as userService from '../services/userService';
 import UserListItem from './userListItem';
 import CreateUserModal from './CreateUserModal';
 import UserInfoModal from './userInfoModal';
+import DeleteUserModal from './DeleteUserModal';
 
 export default function UserListTable() {
     const [users, setUsers] = useState([]);
     const [showCreate, setShowCreate] = useState(null);
     const [showInfo, setShowInfo] = useState(null);
+    const [showDelete, setShowDelete] = useState(null);
 
     useEffect(() => {
         userService.getAll()
@@ -47,6 +49,16 @@ export default function UserListTable() {
 
     const hideInfoModal = () => {
         setShowInfo(null);
+    }
+
+    // For deletion
+
+    const showDeleteModal = (id) => {
+        setShowDelete(<DeleteUserModal id={id} hideDelete={hideDeleteModal} />)
+    }
+
+    const hideDeleteModal = () => {
+        setShowDelete(null);
     }
 
     return (
@@ -109,7 +121,7 @@ export default function UserListTable() {
                     </thead>
                     <tbody>
                         {users.map(user => (
-                            <UserListItem key={user._id} showInfo={showInfoModal} {...user} />
+                            <UserListItem key={user._id} showInfo={showInfoModal} showDelete={showDeleteModal} {...user} />
                         ))}
                     </tbody>
                 </table>
@@ -117,6 +129,7 @@ export default function UserListTable() {
             <button className="btn-add btn" onClick={showUserCreateModal}>Add new user</button>
             {showCreate}
             {showInfo}
+            {showDelete}
         </>
     )
 }
