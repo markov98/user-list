@@ -10,11 +10,6 @@ export default function UserListItem({
     imageUrl,
     showInfo
 }) {
-
-const showInfoHadler = () => {
-    showInfo(_id);
-}
-
     return (
         <tr>
             <td>

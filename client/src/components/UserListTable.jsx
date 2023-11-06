@@ -39,8 +39,10 @@ export default function UserListTable() {
 
     // For users info
 
-    const showInfoModal = (id) => {
-        setShowInfo(<UserInfoModal id={id} hideInfo={hideInfoModal} />)
+    const showInfoModal = async (id) => {
+        const user = await userService.getById(id);
+
+        setShowInfo(<UserInfoModal user={user} hideInfo={hideInfoModal} />)
     }
 
     const hideInfoModal = () => {

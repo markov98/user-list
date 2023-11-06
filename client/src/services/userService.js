@@ -7,6 +7,13 @@ export const getAll = async () => {
     return Object.values(result);
 }
 
+export const getById = async (id) => {
+    const response = await fetch(`${url}/${id}`);
+    const result = await response.json();
+
+    return result;
+}
+
 export const create = async (data) => {
     const body = {
         firstName: data.firstName,
