@@ -64,6 +64,8 @@ export default function UserListTable() {
     const deleteUser = async (id) => {
         userService.remove(id);
 
+        setUsers(state => state.filter(user => user._id !== id));
+
         setShowDelete(null);
     }
 
