@@ -54,10 +54,16 @@ export default function UserListTable() {
     // For deletion
 
     const showDeleteModal = (id) => {
-        setShowDelete(<DeleteUserModal id={id} hideDelete={hideDeleteModal} />)
+        setShowDelete(<DeleteUserModal id={id} hideDelete={hideDeleteModal} deleteUser={deleteUser} />)
     }
 
     const hideDeleteModal = () => {
+        setShowDelete(null);
+    }
+
+    const deleteUser = async (id) => {
+        userService.remove(id);
+
         setShowDelete(null);
     }
 
